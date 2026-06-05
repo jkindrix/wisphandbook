@@ -1,0 +1,53 @@
+---
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+
+const { entry } = Astro.locals.starlightRoute;
+const { depth, lastReviewed, template } = entry.data;
+const isSplash = template === 'splash';
+const reviewed = lastReviewed?.toISOString().slice(0, 10);
+const reportUrl = `https://github.com/jkindrix/wisphandbook/issues/new?title=${encodeURIComponent(
+	`[outdated] ${entry.id}`
+)}`;
+---
+
+<Default><slot /></Default>
+{
+	!isSplash && (
+		<p class="page-meta">
+			<span class={`depth-badge depth-${depth}`}>{depth}</span>
+			<span>Last reviewed: {reviewed}</span>
+			<a href={reportUrl}>Report outdated info</a>
+		</p>
+	)
+}
+
+<style>
+	.page-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		align-items: center;
+		margin-top: 0.5rem;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+	}
+	.depth-badge {
+		padding: 0.1rem 0.5rem;
+		border-radius: 0.5rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+	.depth-overview {
+		background: var(--sl-color-orange-low);
+		color: var(--sl-color-orange-high);
+	}
+	.depth-working {
+		background: var(--sl-color-blue-low);
+		color: var(--sl-color-blue-high);
+	}
+	.depth-comprehensive {
+		background: var(--sl-color-green-low);
+		color: var(--sl-color-green-high);
+	}
+</style>

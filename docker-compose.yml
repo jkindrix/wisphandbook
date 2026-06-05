@@ -1,0 +1,37 @@
+services:
+  wisphandbook:
+    build: .
+    container_name: wisphandbook
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      # Dev/staging host — active until wisphandbook.com DNS is live
+      - "traefik.http.routers.wisphandbook.rule=Host(`wisp.jdok.dev`)"
+      - "traefik.http.routers.wisphandbook.entrypoints=websecure"
+      - "traefik.http.routers.wisphandbook.tls=true"
+      - "traefik.http.routers.wisphandbook.tls.certresolver=cloudflare"
+      - "traefik.http.services.wisphandbook.loadbalancer.server.port=80"
+      - "traefik.http.routers.wisphandbook.middlewares=public-chain@file"
+      # --- Domain cutover (uncomment once wisphandbook.com zone is live in Cloudflare;
+      #     kept as a separate router so a cert failure can't block the dev host) ---
+      # - "traefik.http.routers.wisphandbook-com.rule=Host(`wisphandbook.com`) || Host(`www.wisphandbook.com`)"
+      # - "traefik.http.routers.wisphandbook-com.entrypoints=websecure"
+      # - "traefik.http.routers.wisphandbook-com.tls=true"
+      # - "traefik.http.routers.wisphandbook-com.tls.certresolver=cloudflare"
+      # - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.regex=^https://www\\.wisphandbook\\.com/(.*)"
+      # - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.replacement=https://wisphandbook.com/$${1}"
+      # - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.permanent=true"
+      # - "traefik.http.routers.wisphandbook-com.middlewares=wisphandbook-canonical,public-chain@file"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      start_period: 30s
+      retries: 3
+
+networks:
+  web:
+    external: true
