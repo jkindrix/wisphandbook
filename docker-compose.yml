@@ -8,23 +8,25 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      # Dev/staging host — active until wisphandbook.com DNS is live
-      - "traefik.http.routers.wisphandbook.rule=Host(`wisp.jdok.dev`)"
-      - "traefik.http.routers.wisphandbook.entrypoints=websecure"
-      - "traefik.http.routers.wisphandbook.tls=true"
-      - "traefik.http.routers.wisphandbook.tls.certresolver=cloudflare"
+      # Canonical domain (ADR-0001)
+      - "traefik.http.routers.wisphandbook-com.rule=Host(`wisphandbook.com`) || Host(`www.wisphandbook.com`)"
+      - "traefik.http.routers.wisphandbook-com.entrypoints=websecure"
+      - "traefik.http.routers.wisphandbook-com.tls=true"
+      - "traefik.http.routers.wisphandbook-com.tls.certresolver=cloudflare"
       - "traefik.http.services.wisphandbook.loadbalancer.server.port=80"
-      - "traefik.http.routers.wisphandbook.middlewares=public-chain@file"
-      # --- Domain cutover (uncomment once wisphandbook.com zone is live in Cloudflare;
-      #     kept as a separate router so a cert failure can't block the dev host) ---
-      # - "traefik.http.routers.wisphandbook-com.rule=Host(`wisphandbook.com`) || Host(`www.wisphandbook.com`)"
-      # - "traefik.http.routers.wisphandbook-com.entrypoints=websecure"
-      # - "traefik.http.routers.wisphandbook-com.tls=true"
-      # - "traefik.http.routers.wisphandbook-com.tls.certresolver=cloudflare"
-      # - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.regex=^https://www\\.wisphandbook\\.com/(.*)"
-      # - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.replacement=https://wisphandbook.com/$${1}"
-      # - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.permanent=true"
-      # - "traefik.http.routers.wisphandbook-com.middlewares=wisphandbook-canonical,public-chain@file"
+      - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.regex=^https://www\\.wisphandbook\\.com/(.*)"
+      - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.replacement=https://wisphandbook.com/$${1}"
+      - "traefik.http.middlewares.wisphandbook-canonical.redirectregex.permanent=true"
+      - "traefik.http.routers.wisphandbook-com.middlewares=wisphandbook-canonical,public-chain@file"
+      # Old staging host → 301 to canonical (separate router so a cert issue on one host can't block the other)
+      - "traefik.http.routers.wisphandbook-dev.rule=Host(`wisp.jdok.dev`)"
+      - "traefik.http.routers.wisphandbook-dev.entrypoints=websecure"
+      - "traefik.http.routers.wisphandbook-dev.tls=true"
+      - "traefik.http.routers.wisphandbook-dev.tls.certresolver=cloudflare"
+      - "traefik.http.middlewares.wisphandbook-dev-redirect.redirectregex.regex=^https://wisp\\.jdok\\.dev/(.*)"
+      - "traefik.http.middlewares.wisphandbook-dev-redirect.redirectregex.replacement=https://wisphandbook.com/$${1}"
+      - "traefik.http.middlewares.wisphandbook-dev-redirect.redirectregex.permanent=true"
+      - "traefik.http.routers.wisphandbook-dev.middlewares=wisphandbook-dev-redirect,public-chain@file"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 30s
