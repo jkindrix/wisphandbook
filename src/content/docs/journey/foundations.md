@@ -1,7 +1,6 @@
 ---
 title: "Stage 0: Foundations"
 description: Should you start a WISP at all? Feasibility, economics, and the honest no-go cases.
-draft: true
 sidebar:
   order: 1
 stage: foundations
@@ -49,16 +48,23 @@ A rough sketch of the unit math, with mid-2026 ballpark figures — validate
 every number against your own market before trusting it:
 
 - **Revenue per customer:** $50–100/month for typical rural service tiers.
-- **Cost to add a customer:** roughly $300–800 all-in — an outdoor CPE radio
-  ($80–150), a router, mounting hardware, and the install labor (your time, at
-  first). That's a 6–12 month payback per customer if nothing goes wrong.
+- **Cost to add a customer:** roughly $300–700 all-in — an outdoor CPE radio
+  (the workhorse class runs $50–110 street price), a router, mounting
+  hardware, and the install labor (your time, at first). Industry-wide, the
+  average cost to connect a fixed-wireless customer is **under $500** —
+  against roughly $4,500 to connect a fiber subscriber, which is the whole
+  reason WISPs exist. At those numbers, each customer pays back their
+  connection cost in well under a year.
 - **Fixed monthly costs that exist whether you have 1 customer or 100:**
   upstream bandwidth (commonly $500–1,500/month for a dedicated gigabit-class
   connection, more in remote areas), site rent, insurance, software, fuel.
 - **The implication:** there's a customer count below which you lose money
-  every month, *forever*. Finding that break-even number for your specific
-  costs — usually somewhere between 30 and 100 customers for a lean single-site
-  start — is the single most important spreadsheet you will ever build.
+  every month, *forever*. Run the arithmetic for your own costs — fixed
+  monthly costs divided by per-customer margin — and you'll usually land
+  somewhere between 15 and 50 customers to break even on a lean single-site
+  start. Experienced operators use a blunter planning floor: **a site that
+  can't realistically reach ~50 customers isn't worth building.** That
+  spreadsheet is the single most important document you will ever create.
 
 When this works: clustered demand (a town, a lake community, a valley of
 farms) that existing providers serve badly or not at all, with a defensible
@@ -108,8 +114,11 @@ Four things determine whether a place can support a new WISP. All four are
 researchable from your desk before you spend anything:
 
 - **Demand density.** How many homes/businesses are in radio range of
-  plausible high sites? A sector that can see 200 rooftops at a 10% take rate
-  is a business; one that sees 30 is a hobby.
+  plausible high sites? The long-standing practitioner rule of thumb: you want
+  **~500 visible rooftops within 3–5 miles of a site**, because a
+  good-but-realistic take rate is about **10%** — which delivers the ~50
+  customers that make a site worth building. A site that can only see 100
+  rooftops is a hobby, not a business.
 - **Terrain and foliage.** Fixed wireless needs [line of
   sight](/reference/glossary/#rf-and-wireless). Flat and open is easy. Rolling
   hills create shadows; dense tree cover at customer height is the silent
@@ -146,7 +155,9 @@ area, you do not have a WISP — full stop. Settle this before anything else.
 ## What it costs before customer #1
 
 Ballpark, mid-2026, for a lean single-site start (one rented high site, one
-sector, a handful of customers): **$15,000–50,000** spread across:
+sector, a handful of customers): **$15,000–50,000**. Treat this as the
+roughest number on this page — it varies enormously with how much you can do
+yourself and what your site costs. It spreads across:
 
 - First high-site equipment: sector antenna/AP, backhaul radios, mounting,
   power — a few thousand dollars with current unlicensed-band gear
