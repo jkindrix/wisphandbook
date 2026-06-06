@@ -1,26 +1,159 @@
 ---
 title: "Stage 1: First Customer"
-description: From nothing to one paying subscriber — spectrum, your first site, your first install.
-draft: true
+description: From nothing to one paying subscriber — RF fundamentals, your first site, your first link, your first install.
 sidebar:
   order: 2
 stage: first-customer
 prerequisites: [journey/foundations]
-lastReviewed: 2026-06-05
+lastReviewed: 2026-06-06
 depth: overview
 jurisdiction: universal
+equipmentCited: true
 ---
 
-<!-- OUTLINE — to be written. Stays draft (unpublished) until genuinely useful. -->
+Stage 0 ended with a decision: this area can work. Stage 1 ends with a
+stranger paying you money for internet that arrives over your radios. Between
+those two points: a small amount of physics, one negotiated rooftop, two
+working links, and the minimum viable apparatus of a real business.
 
 ## RF fundamentals you cannot skip
 
-## Choosing your first spectrum (unlicensed to start)
+You don't need an engineering degree. You need four ideas, deeply:
+
+1. **Line of sight is non-negotiable, and it's fatter than it looks.** A radio
+   path needs not just a visual line but a clear [Fresnel
+   zone](/reference/glossary/#rf-and-wireless) — a football-shaped region
+   around it that bulges widest mid-path. A link that "can see" the customer
+   through a notch in the trees will disappoint you forever.
+2. **The link budget is arithmetic, not magic.** Transmit power + antenna
+   gains − path loss must land far enough above the noise to hit the data
+   rates you're selling — with [fade
+   margin](/reference/glossary/#rf-and-wireless) to spare for rain and bad
+   days. Every vendor publishes link planning tools; plan every link on paper
+   before you buy anything.
+3. **Signal-to-noise sets speed.** Modern radios shift modulation with link
+   quality: a clean link runs fast, a noisy one silently degrades to a
+   fraction of its rated speed. "Rated 500 Mbps" means *under ideal SNR* —
+   your real number depends on your spectrum and your aim.
+4. **The noise floor is your real competitor.** In unlicensed spectrum, every
+   other transmitter in the area raises the floor under you. This is why band
+   choice (next section) matters more than radio brand.
+
+Learn these by *planning*: pick three real houses near a candidate site and
+build the link budget and path profile for each before spending a dollar.
+The exercise costs an evening and teaches more than a month of forum reading.
+
+## Choosing your first spectrum
+
+Spectrum bands have *personalities* — how far they reach, what they punch
+through, how crowded they are, and what coordination they require. The
+specifics are jurisdiction-dependent: see [US Spectrum for Fixed
+Wireless](/reference/spectrum-us/) for the current American menu.
+
+The strategic shape, in brief:
+
+- There's a **crowded workhorse** band (5 GHz in the US) with the largest,
+  cheapest gear ecosystem — fine in quiet rural air, painful where other
+  operators already shout.
+- There's **newly opened, cleaner spectrum** (6 GHz standard-power in the US,
+  coordinated by an automated database) — the single biggest timing advantage
+  a new operator has today over WISPs built a decade ago.
+- There's **huge-capacity, short-range millimeter wave** (60 GHz) — superb
+  for backhaul hops and dense clusters, weather-sensitive, wrong for long
+  rural reaches.
+- There's a **shared mid-band** (CBRS in the US) that propagates better than
+  the workhorse band at the cost of a coordination subscription.
+
+A sane 2026 starting posture for most new rural operators: subscriber access
+in 5 or 6 GHz (prefer 6 GHz where gear and AFC coverage allow), 60 GHz or
+wired for short backhaul, and licensed/coordinated options deferred to
+[Stage 3](/journey/scaling/).
 
 ## Your first site: rooftop, tower, or silo
 
-## The first link: backhaul to access point
+You're looking for **height with power within backhaul reach** — an existing
+structure, not a new tower. Water tanks, grain silos and elevators, church
+steeples, multi-story buildings, and existing radio towers are the classic
+candidates. New-build towers are a Stage 3 problem.
+
+What the deal looks like in practice, per operator reports: small-structure
+leases commonly run **under $200/month**, and "free internet for the
+landlord" barter deals are everywhere at the very start ($50–100/month of
+value). Both are legitimate. Three cautions before you sign anything:
+
+- **Term and exit.** Commercial tower leases can run very long with no
+  termination right. For your first site, prefer short terms with renewals —
+  you don't yet know if this site is right.
+- **Revenue-share clauses** ("percentage of subscribers served from the
+  site") appear in some leases; understand them before agreeing.
+- **Access, power, and grounding** are part of the deal, not afterthoughts:
+  you need 24/7 access rights, reliable power, and a path to proper
+  electrical grounding — radios on tall metal things attract lightning.
+
+## The first link
+
+Your minimum network is two links deep: **backhaul** (from wherever your
+upstream fiber lands to your high site) and **access** (from the high site's
+sector antenna to the customer). Sometimes the fiber reaches the site itself
+and your first network is one sector and one customer radio — take that gift
+when terrain offers it.
+
+What the gear costs, in mid-2026 classes rather than models: a quality sector
+access point runs roughly **$500–1,500**; subscriber radios **$50–160**; a
+short millimeter-wave backhaul pair, a few hundred to a couple thousand
+dollars. Major fixed-wireless vendors run **"new WISP" starter programs** —
+discounted bundles of one sector plus a dozen subscriber radios, sometimes
+with engineering consultation hours included. For a first site, these bundles
+are genuinely good value, and the included engineer time is worth more than
+the discount.
+
+One discipline from day one: **whatever platform you pick, stay on it.** A
+single vendor ecosystem for access radios keeps your spare parts, your
+management software, and your learning curve unified. Mixing platforms at
+three customers is how networks become unmaintainable at three hundred.
 
 ## CPE and the first install
 
+The install is where your reputation is built or destroyed — it's the only
+part of your network the customer ever sees. The craft, at overview depth:
+
+- **Survey first**: confirm the path profile and signal at the actual mount
+  point before drilling anything.
+- **Mount solidly, aim precisely**: a degree of misalignment costs real
+  throughput; alignment tools in modern CPE make this learnable in an
+  afternoon.
+- **Ground and weatherproof properly**: surge protection at the cable entry,
+  drip loops, sealed connectors. Skipped weatherproofing is the leading cause
+  of the mysterious mid-storm support call.
+- **Document everything**: photos, signal numbers, channel, height. Future
+  you, troubleshooting in the dark, will be grateful.
+
+Roof and ladder work is genuinely dangerous. This handbook describes the
+landscape but is not safety training — get real instruction before working at
+height, and know when a site needs a professional climber. (See
+[About → Disclaimer](/about/).)
+
 ## Charging money: the minimum viable business
+
+The moment money changes hands, you're an ISP. The minimum apparatus:
+
+- **An entity and insurance.** Liability insurance *before* the first roof —
+  not after. The business formalities sized for one-customer scale were
+  covered in [Stage 0](/journey/foundations/); they're due now.
+- **A service agreement** — one page is fine at first: speeds are
+  "up to," what's included, what happens at non-payment, who owns the radio
+  on the roof.
+- **Billing that runs itself.** Free tiers exist (a major vendor's ISP
+  management platform includes free CRM/billing; other entry platforms are
+  free up to a few dozen subscribers), and paid WISP platforms run well under
+  €1/subscriber/month at small scale. Pick anything that does recurring
+  card/ACH billing automatically — chasing checks does not scale past
+  customer five.
+- **A price with a reason.** You know the competition from Stage 0. Price for
+  your advantage (service, latency, locality) — not a race to the bottom you
+  can't win.
+
+The first customer is disproportionately hard: every system is new, every
+mistake is yours alone, and the install takes four times as long as it ever
+will again. That's normal. Number two is easier. Number ten is a process —
+which is exactly what [Stage 2: First Ten](/journey/first-ten/) is about.
