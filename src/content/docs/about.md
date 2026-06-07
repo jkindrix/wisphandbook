@@ -42,9 +42,9 @@ Find me on [GitHub](https://github.com/jkindrix) and
 
 ## Scope and honesty
 
-US-first. Every page carries a last-reviewed date and a depth badge
-(`overview` / `working` / `comprehensive`) so you always know whether you're
-reading a summary or the full treatment. Pages that name specific equipment or
+US-first. Every journey and reference page carries a last-reviewed date and a
+depth badge (`overview` / `working` / `comprehensive`) so you always know
+whether you're reading a summary or the full treatment. Pages that name specific equipment or
 prices are flagged internally for shorter review cycles, because that
 information goes stale fastest.
 

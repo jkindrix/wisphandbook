@@ -24,20 +24,22 @@ You don't need an engineering degree. You need four ideas, deeply:
    path needs not just a visual line but a clear [Fresnel
    zone](/reference/glossary/#rf-and-wireless) — a football-shaped region
    around it that bulges widest mid-path. A link that "can see" the customer
-   through a notch in the trees will disappoint you forever.
+   through a notch in the trees will disappoint you forever — and trees grow
+   leaves: a path surveyed in winter can fail in June.
 2. **The link budget is arithmetic, not magic.** Transmit power + antenna
    gains − path loss must land far enough above the noise to hit the data
    rates you're selling — with [fade
    margin](/reference/glossary/#rf-and-wireless) to spare for rain and bad
    days. Every vendor publishes link planning tools; plan every link on paper
    before you buy anything.
-3. **Signal-to-noise sets speed.** Modern radios shift modulation with link
+3. **The noise floor is your real competitor.** In unlicensed spectrum, every
+   other transmitter in the area raises the floor under you — and it's what
+   makes signal quality real in the field. This is why band choice (next
+   section) matters more than radio brand.
+4. **Signal-to-noise sets speed.** Modern radios shift modulation with link
    quality: a clean link runs fast, a noisy one silently degrades to a
    fraction of its rated speed. "Rated 500 Mbps" means *under ideal SNR* —
    your real number depends on your spectrum and your aim.
-4. **The noise floor is your real competitor.** In unlicensed spectrum, every
-   other transmitter in the area raises the floor under you. This is why band
-   choice (next section) matters more than radio brand.
 
 Learn these by *planning*: pick three real houses near a candidate site and
 build the link budget and path profile for each before spending a dollar.
@@ -56,8 +58,10 @@ The strategic shape, in brief:
   cheapest gear ecosystem — fine in quiet rural air, painful where other
   operators already shout.
 - There's **newly opened, cleaner spectrum** (6 GHz standard-power in the US,
-  coordinated by an automated database) — the single biggest timing advantage
-  a new operator has today over WISPs built a decade ago.
+  coordinated by an automated database) — the single biggest *spectrum* timing
+  advantage a new US operator has today over WISPs built a decade ago. Not
+  magic: coordination availability varies by location, and propagation trails
+  5 GHz slightly — but clean channels beat crowded ones.
 - There's **huge-capacity, short-range millimeter wave** (60 GHz) — superb
   for backhaul hops and dense clusters, weather-sensitive, wrong for long
   rural reaches.
@@ -76,10 +80,11 @@ structure, not a new tower. Water tanks, grain silos and elevators, church
 steeples, multi-story buildings, and existing radio towers are the classic
 candidates. New-build towers are a Stage 3 problem.
 
-What the deal looks like in practice, per operator reports: small-structure
-leases commonly run **under $200/month**, and "free internet for the
-landlord" barter deals are everywhere at the very start ($50–100/month of
-value). Both are legitimate. Three cautions before you sign anything:
+What the deal looks like in practice, per
+[operator reports](https://www.steelintheair.com/wisp-tower-leases-what-you-need-to-know-before-you-sign-one/):
+small-structure leases commonly run **under $200/month**, and "free internet
+for the landlord" barter deals are everywhere at the very start ($50–100/month
+of value). Both are legitimate. Three cautions before you sign anything:
 
 - **Term and exit.** Commercial tower leases can run very long with no
   termination right. For your first site, prefer short terms with renewals —

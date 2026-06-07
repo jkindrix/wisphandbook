@@ -4,7 +4,7 @@ description: Should you start a WISP at all? Feasibility, economics, and the hon
 sidebar:
   order: 1
 stage: foundations
-lastReviewed: 2026-06-06
+lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: universal
 equipmentCited: true
@@ -51,9 +51,9 @@ every number against your own market before trusting it:
 - **Cost to add a customer:** roughly $300–700 all-in — an outdoor CPE radio
   (the workhorse class runs $50–110 street price), a router, mounting
   hardware, and the install labor (your time, at first). Industry-wide, the
-  average cost to connect a fixed-wireless customer is **under $500** —
-  against roughly $4,500 to connect a fiber subscriber, which is the whole
-  reason WISPs exist. At those numbers, each customer pays back their
+  average cost to connect a fixed-wireless customer is
+  [**under $500** — against roughly $4,500 to connect a fiber subscriber](https://www.nexttv.com/blog/fixed-wireless-101-what-rivals-need-to-know),
+  which is the whole reason WISPs exist. At those numbers, each customer pays back their
   connection cost in well under a year.
 - **Fixed monthly costs that exist whether you have 1 customer or 100:**
   upstream bandwidth (commonly $500–1,500/month for a dedicated gigabit-class
@@ -84,16 +84,19 @@ States, you should assume **three serious competitors exist nearly
 everywhere**:
 
 1. **LEO satellite.** Starlink is an option at essentially every address, with
-   median speeds around 100 Mbps and pricing that has dropped aggressively —
-   entry plans now start around $40/month in many areas. It has no
-   line-of-sight requirement, no install dependence on your tower, and a
-   national marketing machine.
+   [median speeds around 100 Mbps](https://broadbandbreakfast.com/wisp-speeds-rising-but-so-are-starlinks-ookla-says/)
+   and aggressive pricing — as of mid-2026, US residential plans
+   [start around $55/month](https://www.starlink.com/residential), with
+   regional "Lite" tiers and promotions lower still. It has no line-of-sight
+   requirement, no install dependence on your tower, and a national marketing
+   machine.
 2. **Carrier fixed wireless.** T-Mobile, Verizon, and AT&T sell home internet
    off their cellular networks at many or most addresses, often at the lowest
    total price in the market. Where they have capacity, they are brutal
    price competition.
-3. **Subsidized fiber.** The $42 billion BEAD program finished its planning
-   phase and construction begins in earnest in 2026. Fiber makes up the large
+3. **Subsidized fiber.** The
+   [$42 billion BEAD program](https://www.ntia.gov/funding-programs/high-speed-internet-programs/broadband-equity-access-and-deployment-bead-program)
+   finished its planning phase and construction begins in earnest in 2026. Fiber makes up the large
    majority of planned builds. If a funded fiber buildout is coming to your
    target area in the next few years, you will be competing against a
    service that is better than yours, built with someone else's money.
@@ -114,8 +117,9 @@ Four things determine whether a place can support a new WISP. All four are
 researchable from your desk before you spend anything:
 
 - **Demand density.** How many homes/businesses are in radio range of
-  plausible high sites? The long-standing practitioner rule of thumb: you want
-  **~500 visible rooftops within 3–5 miles of a site**, because a
+  plausible high sites? The long-standing
+  [practitioner rule of thumb](https://startyourownisp.com/posts/location-location-location/):
+  you want **~500 visible rooftops within 3–5 miles of a site**, because a
   good-but-realistic take rate is about **10%** — which delivers the ~50
   customers that make a site worth building. A site that can only see 100
   rooftops is a hobby, not a business.
@@ -141,8 +145,9 @@ does it cost?**
 - What you're buying is *dedicated* internet access (DIA) or transport to an
   internet exchange — not a residential connection with a "no resale" clause
   in its terms.
-- As of mid-2026, gigabit-class DIA commonly runs $500–1,500/month at
-  well-served locations, with rural locations often paying a 25–50% premium —
+- As of mid-2026, gigabit-class DIA commonly runs
+  [$500–1,500/month](https://lightyear.ai/resources/dedicated-internet-access-dia-ultimate-pricing-guide)
+  at well-served locations, with rural locations often paying a 25–50% premium —
   and if fiber construction is needed to reach your site, the build cost can
   be thousands to tens of thousands up front.
 - The distance between "where fiber is cheap" and "where your customers are"

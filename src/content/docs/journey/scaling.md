@@ -5,7 +5,7 @@ sidebar:
   order: 4
 stage: scaling
 prerequisites: [journey/first-ten]
-lastReviewed: 2026-06-06
+lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: universal
 equipmentCited: true
@@ -27,19 +27,27 @@ scale *against* you.
 
 The redesign, at overview depth:
 
-- **Route, don't bridge.** Each tower site becomes its own routed segment
-  with its own subnets. A failure at one site stays at one site, and
-  troubleshooting starts with "which segment" instead of "which of my 200
-  devices."
-- **Run a routing protocol** (OSPF is the standard small-ISP choice) so the
-  network learns its own topology and reroutes around failures — which only
-  pays off if you also build…
+- **Route between sites, don't bridge across them.** The sin isn't layer 2
+  itself — a sector, a customer segment, a single site will still bridge
+  locally and that's fine. The sin is one flat broadcast domain *stretched
+  across towers*. Each site becomes its own routed segment with its own
+  subnets: a failure at one site stays at one site, and troubleshooting
+  starts with "which segment" instead of "which of my 200 devices."
+- **Run a routing protocol** (OSPF is the common small-ISP choice; the point
+  is dynamic rerouting, not the acronym) so the network learns its own
+  topology and routes around failures — which only pays off if you also
+  build…
 - **Redundant paths.** A second backhaul route turns "tower offline, drive
-  now" into "tower degraded, fix tomorrow." Rings beat trees; even one
-  strategic extra link changes your nights and weekends.
+  now" into "tower degraded, fix tomorrow." Routed, physically diverse rings
+  beat single-homed trees; even one strategic extra link changes your nights
+  and weekends.
 - **Separate management from customers.** Your radios' management interfaces
   on their own protected network, reachable even when customer traffic is
   broken — you cannot fix what you can't reach.
+- **Isolate customers from each other.** Subscribers never share a broadcast
+  domain, and your edge drops spoofed source addresses (the BCP38 discipline).
+  Skipping this is invisible right up until one customer's infected device —
+  or one abuse complaint with your name on it — makes it very visible.
 
 If this paragraph feels early, skip it and bookmark it: the right time to
 re-architect is *before* the outage that proves the point.
@@ -53,9 +61,10 @@ the internet's eyes:
 
 - **An ASN** — your network's identity for [BGP](/reference/glossary/#network)
   routing — plus your own address blocks, from your regional registry. The
-  cost is modest: in North America (ARIN), small-operator annual fees run a
-  few hundred dollars a year (the smallest tiers are under $300/yr as of
-  2026, rising with holdings).
+  cost is modest: in North America,
+  [ARIN's small-operator annual fees](https://www.arin.net/resources/fees/fee_schedule/)
+  run a few hundred dollars a year (the smallest tiers are under $300/yr as
+  of 2026, rising with holdings).
 - **IPv4 is the expensive part.** New blocks essentially don't exist; you'll
   buy or lease on the transfer market, and most growing WISPs stretch what
   they have with [CGNAT](/reference/glossary/#network). Budget for this

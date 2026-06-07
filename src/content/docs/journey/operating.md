@@ -5,7 +5,7 @@ sidebar:
   order: 5
 stage: operating
 prerequisites: [journey/scaling]
-lastReviewed: 2026-06-06
+lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: universal
 equipmentCited: true
@@ -22,13 +22,17 @@ The operating-stage network earns trust in one specific way: **you call them
 before they call you.** That requires monitoring in three layers, each
 answering a different question:
 
-1. **Up/down** — is every radio, router, and power system reachable right
-   now? This is table stakes, and any monitoring platform (the open-source
-   standards, your vendor's management system, or both) does it well.
-2. **Performance** — not "is it up" but "is it good": signal levels, retransmits,
-   capacity headroom, latency under load. Degradation is the early warning
-   that precedes almost every "sudden" failure; a link that's been slowly
-   losing margin for three weeks was never actually a surprise.
+1. **Up/down — including the site itself.** Is every radio, router, and power
+   system reachable right now? Any monitoring platform (the open-source
+   standards, your vendor's management system, or both) does the network half
+   well; the half operators under-build is **site health**: UPS battery
+   voltage and runtime, PoE status, cabinet temperature, door/tamper, power
+   events. In WISP operations, "tower down" is very often *power*, not radio.
+2. **Performance** — not "is it up" but "is it good": signal and SNR,
+   retransmits, AP airtime utilization, backhaul headroom, latency and loss
+   under load. Degradation is the early warning that precedes almost every
+   "sudden" failure; a link that's been slowly losing margin for three weeks
+   was never actually a surprise.
 3. **Trends** — the monthly view: which APs are approaching the capacity
    rules from [Stage 2](/journey/first-ten/), which links eat their fade
    margin every storm season, where the next sector split is coming due.
@@ -36,9 +40,11 @@ answering a different question:
    planning.
 
 Two disciplines matter more than tool choice: **alerts must be actionable**
-(an alert channel that cries wolf trains you to ignore the real one), and
-**someone is always on call** — formally, with a schedule, even when "someone"
-is still mostly you. Informal on-call is how operators burn out.
+(an alert channel that cries wolf trains you to ignore the real one — and
+that includes dependency suppression: when a backhaul dies, you want one
+page, not eighty pages for every CPE behind it), and **someone is always on
+call** — formally, with a schedule, even when "someone" is still mostly you.
+Informal on-call is how operators burn out.
 
 ## Outages and maintenance
 
@@ -62,10 +68,12 @@ Outages stop being emergencies and become procedures:
 The numbers that govern the long game, with what the industry data supports
 as of mid-2026:
 
-- **Churn is the WISP superpower.** US broadband overall churns around 1.3%
-  *monthly*; operator surveys consistently report fixed-wireless churn far
-  lower (many operators report figures under 1% — survey methodology varies,
-  so treat exact comparisons cautiously). The structural reasons: rural
+- **Churn is the WISP superpower.** US broadband overall churns
+  [around 1.3% *monthly*](https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/02/us-broadband-monthly-churn-hits-one-point-three-percent);
+  [operator surveys](https://www.nexttv.com/blog/fixed-wireless-101-what-rivals-need-to-know)
+  consistently report fixed-wireless churn far lower (many operators report
+  figures under 1% — survey methodology varies, so treat exact comparisons
+  cautiously). The structural reasons: rural
   customers have fewer alternatives, and good local service is genuinely
   sticky. Every retention-friendly habit in this handbook — honest installs,
   proactive monitoring, announced maintenance — is why.
@@ -119,7 +127,8 @@ Eventually every operator faces the strategic fork, usually more than once:
   density on existing sites means more revenue over the same fixed costs,
   and it's the cheapest growth available. Sprawl kills more WISPs than
   competition does.
-- **Selling** is a real and respectable exit. Rules of thumb in the market
+- **Selling** is a real and respectable exit.
+  [Rules of thumb in the market](https://dealstream.com/industry-guides/telecom-businesses/rules-of-thumb)
   put small-ISP value in the **hundreds of dollars per subscriber** (commonly
   cited at $300–800 for fixed broadband customers), with multiples rising
   for clean books, low churn, documented networks, and owned infrastructure —

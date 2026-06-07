@@ -5,7 +5,7 @@ sidebar:
   order: 3
 stage: first-ten
 prerequisites: [journey/first-customer]
-lastReviewed: 2026-06-06
+lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: universal
 equipmentCited: true
@@ -84,8 +84,8 @@ didn't, drives.
 
 The question every growing operator asks — "how many customers fit on one
 access point?" — has a real answer, and it's about arithmetic, not vendor
-ratings. Industry analysis of fixed-wireless networks puts a healthy
-**oversubscription ratio around 5:1** — selling five times the AP's real
+ratings. [Industry analysis of fixed-wireless networks](https://preseem.com/2020/03/wisp-access-point-oversubscription-ratio/)
+puts a healthy **oversubscription ratio around 5:1** — selling five times the AP's real
 capacity across subscribers, on the (correct) bet that they don't all peak
 simultaneously. Concretely: a current mid-class sector delivering ~200 Mbps
 of usable capacity supports roughly **40 subscribers on a 25 Mbps plan at
