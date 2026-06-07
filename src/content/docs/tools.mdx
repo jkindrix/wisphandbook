@@ -1,0 +1,48 @@
+---
+title: "Tools & Calculators"
+description: The handbook's interactive calculators in one place — break-even, Fresnel clearance, and link budget.
+lastReviewed: 2026-06-07
+depth: working
+jurisdiction: universal
+equipmentCited: true
+---
+
+import BreakEvenCalculator from '../../components/calculators/BreakEvenCalculator.astro';
+import FresnelCalculator from '../../components/calculators/FresnelCalculator.astro';
+import LinkBudgetCalculator from '../../components/calculators/LinkBudgetCalculator.astro';
+
+Every calculator here also lives inline in the journey, at the page that
+teaches the concept behind it — this page just puts them in one place for the
+hundredth time you need to run the numbers. All client-side: nothing you type
+leaves your browser.
+
+## Break-even
+
+How many customers before the network stops losing money — and how fast each
+customer repays their connect cost. Taught in
+[Stage 0: Foundations](/journey/foundations/).
+
+<BreakEvenCalculator />
+
+## Fresnel zone clearance
+
+How much clear space a radio path needs around the visual line of sight,
+using the 60% rule. Taught in
+[Stage 1: First Customer](/journey/first-customer/).
+
+<FresnelCalculator />
+
+## Link budget
+
+Whether a planned link delivers your service tier, and with how much margin
+to spare for weather and bad days. Taught in
+[Stage 1: First Customer](/journey/first-customer/).
+
+<LinkBudgetCalculator />
+
+---
+
+More calculators arrive as the journey deepens (oversubscription planning and
+take-rate modeling are likely next). Each gets built only when a journey page
+needs it — see [ADR-0007](https://github.com/jkindrix/wisphandbook/blob/main/docs/decisions/0007-calculators-and-interactivity.md)
+for the architecture and the discipline.
