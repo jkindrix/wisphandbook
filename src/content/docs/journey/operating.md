@@ -54,7 +54,8 @@ Outages stop being emergencies and become procedures:
 - **Runbooks for the predictable failures** — power loss at a site, backhaul
   down, upstream flap. Written when calm, followed when not. Your Stage 2
   install documentation and Stage 3 network docs are half the runbook
-  already.
+  already, and the [troubleshooting field guide](/reference/troubleshooting/)
+  is the blast-radius triage they hang off.
 - **Maintenance windows, announced and honored.** Customers forgive planned
   3 a.m. work they were told about; they remember unannounced Tuesday-evening
   downtime forever.

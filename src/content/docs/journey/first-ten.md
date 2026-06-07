@@ -78,7 +78,9 @@ WiFi. Three defenses, in order of leverage:
 
 And the install discipline pays off here: the tech who documented signal
 numbers and photos at install time troubleshoots in minutes; the one who
-didn't, drives.
+didn't, drives. When something does break, the
+[troubleshooting field guide](/reference/troubleshooting/) is the
+symptom-first companion to this section.
 
 ## The referral machine
 
