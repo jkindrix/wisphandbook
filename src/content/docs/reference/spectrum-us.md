@@ -3,6 +3,7 @@ title: "US Spectrum for Fixed Wireless"
 description: The bands a US WISP can use today — what each is good for, and what coordination it requires.
 sidebar:
   order: 10
+prev: false
 lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: us-federal

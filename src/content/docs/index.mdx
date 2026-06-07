@@ -19,7 +19,7 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ## What this is
 
@@ -37,21 +37,24 @@ goes. No stage is a stub, and none yet claims to be the full treatment.
 regulatory and spectrum specifics are written for the US (FCC) and clearly marked.
 
 <CardGrid stagger>
-	<Card title="A guided journey" icon="rocket">
-		Sequential stages from feasibility to operations. Each page tells you where
-		you are and what comes next.
-	</Card>
-	<Card title="Honest about depth" icon="approve-check">
-		Every journey and reference page carries a depth badge and a
-		last-reviewed date. No padded content, no stale advice presented as
-		current.
-	</Card>
-	<Card title="Reference that stays current" icon="open-book">
-		Hardware, regulatory, and business reference pages are maintained
-		separately from the journey — and dated, because this industry moves.
-	</Card>
-	<Card title="Open and correctable" icon="github">
-		CC BY 4.0, source on GitHub. Spot something outdated? Every page has a
-		one-click report link.
-	</Card>
+	<LinkCard
+		title="A guided journey"
+		href="/journey/foundations/"
+		description="Sequential stages from feasibility to operations. Each page tells you where you are and what comes next."
+	/>
+	<LinkCard
+		title="Honest about depth"
+		href="/about/"
+		description="Every journey and reference page carries a depth badge and a last-reviewed date. No padded content, no stale advice presented as current."
+	/>
+	<LinkCard
+		title="Reference that stays current"
+		href="/reference/hardware/"
+		description="Hardware, spectrum, regulatory, and software reference pages — named, priced, dated, and re-reviewed, because this industry moves."
+	/>
+	<LinkCard
+		title="Open and correctable"
+		href="https://github.com/jkindrix/wisphandbook"
+		description="CC BY 4.0, source on GitHub. Spot something outdated? Every page has a one-click report link."
+	/>
 </CardGrid>

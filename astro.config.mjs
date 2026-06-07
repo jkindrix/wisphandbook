@@ -27,6 +27,7 @@ export default defineConfig({
 					label: 'Reference',
 					items: [{ autogenerate: { directory: 'reference' } }],
 				},
+				{ label: 'About', slug: 'about' },
 			],
 		}),
 	],

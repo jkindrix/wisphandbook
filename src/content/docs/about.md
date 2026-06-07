@@ -1,8 +1,6 @@
 ---
 title: About
 description: Who writes the WISP Handbook, why it exists, and how to correct it.
-sidebar:
-  hidden: true
 lastReviewed: 2026-06-06
 depth: working
 jurisdiction: universal

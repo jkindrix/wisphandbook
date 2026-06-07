@@ -5,6 +5,7 @@ sidebar:
   order: 5
 stage: operating
 prerequisites: [journey/scaling]
+next: false
 lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: universal
