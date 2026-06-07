@@ -6,7 +6,7 @@ sidebar:
 stage: first-customer
 prerequisites: [journey/foundations]
 lastReviewed: 2026-06-07
-depth: overview
+depth: working
 jurisdiction: universal
 equipmentCited: true
 ---
@@ -90,6 +90,16 @@ first; clean spectrum currently costs several times more per roof — 60 GHz or
 wired for short backhaul, and licensed/coordinated options deferred to
 [Stage 3](/journey/scaling/).
 
+**Don't choose from a brochure — measure.** Before committing to a fleet of
+radios, take *one* CPE-class radio to the candidate site and run your
+platform's built-in spectrum analyzer
+([airView-class tools](https://help.uisp.com/hc/en-us/articles/22590893851927-airMAX-Guide-to-Channel-Scanning-with-airView)
+are free and built into the gear) during a **weekday evening** — the hour
+your customers will judge you. The waterfall view shows the noise floor band
+by band; pick the spectrum that's quiet *at peak*, save the survey screenshot
+as your baseline, and you've replaced a guess with the single most consequential
+measurement of Stage 1. Quiet at 10 a.m. means nothing.
+
 ## Your first site: rooftop, tower, or silo
 
 You're looking for **height with power within backhaul reach** — an existing
@@ -111,6 +121,25 @@ of value). Both are legitimate. Three cautions before you sign anything:
 - **Access, power, and grounding** are part of the deal, not afterthoughts:
   you need 24/7 access rights, reliable power, and a path to proper
   electrical grounding — radios on tall metal things attract lightning.
+
+**Walking in the door, prepared.** What separates you from a hobbyist in the
+landlord's eyes is showing up like a business:
+
+- **A one-page proposal**: what you'll mount (photo or mockup), where, what
+  you're offering (rent or service barter), and who to call when something's
+  on their roof.
+- **A certificate of insurance in hand** — landlord-side
+  [lease checklists](https://www.steelintheair.com/wisp-tower-leases-what-you-need-to-know-before-you-sign-one/)
+  expect **$1M general liability with the property owner named as additional
+  insured**, and an operator who can produce that certificate on the spot
+  has answered the landlord's biggest unspoken question. Your insurer issues
+  these on request; it's routine.
+- **The terms the signed agreement must contain**: the term length *and your
+  own exit right*, 24/7 access (with reasonable notice rules), the right to
+  run power and cable from your equipment to the service point, permission
+  for grounding work, and who pays for what if the structure needs repair.
+  A no-sublease clause is normal — accept it. A no-termination clause is
+  not — walk.
 
 ## The first link
 
@@ -136,6 +165,24 @@ One discipline from day one: **whatever platform you pick, stay on it.** A
 single vendor ecosystem for access radios keeps your spare parts, your
 management software, and your learning curve unified. Mixing platforms at
 three customers is how networks become unmaintainable at three hundred.
+
+**Build day, in the right order** — the practice operators converge on:
+
+1. **Bench-configure everything first.** Every radio configured, firmware
+   updated, labeled, and tested *as a connected chain on a table* before
+   anything gets mounted. The ground is a better place to debug than a
+   ladder, and a radio that misbehaves on the bench was about to misbehave
+   at 40 feet.
+2. **Backhaul first, then prove it.** Bring the site link up and let it run
+   for a day or two — watch the signal against your link plan and the
+   evening noise against your survey. A sector on top of an unproven
+   backhaul builds your network on a question mark.
+3. **Then the sector, then the first install.** Each layer proven before the
+   next depends on it — and every baseline number (backhaul signal, sector
+   noise floor, install signal) recorded in your system the day it's born.
+   Those baselines are the entire basis of the
+   [troubleshooting method](/reference/troubleshooting/) you'll live by
+   later.
 
 ## Where the first customer comes from
 
@@ -206,6 +253,23 @@ The moment money changes hands, you're an ISP. The minimum apparatus:
 - **A price with a reason.** You know the competition from Stage 0. Price for
   your advantage (service, latency, locality) — not a race to the bottom you
   can't win.
+
+## The Stage 1 exit checklist
+
+Like [Stage 0's](/journey/foundations/), these are artifacts, not feelings:
+
+- [ ] **A peak-hour spectrum survey** from the actual site, saved as baseline
+- [ ] **A signed site agreement** with your exit right, 24/7 access, power and
+  cable rights — and your **insurance certificate** active and on file
+- [ ] **The backhaul live** at (or above) its link-plan margin, proven over
+  days, baseline recorded
+- [ ] **The sector broadcasting**, with walk-away signal thresholds written
+  down *before* the first install
+- [ ] **One paying customer** installed at or above those thresholds — on
+  autopay, with a signed one-page service agreement
+- [ ] **Install photos and signal baselines** recorded in your
+  billing/infrastructure system
+- [ ] **An interest list** with your next five installs already on it
 
 The first customer is disproportionately hard: every system is new, every
 mistake is yours alone, and the install takes four times as long as it ever
