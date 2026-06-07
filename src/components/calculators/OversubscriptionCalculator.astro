@@ -1,0 +1,109 @@
+---
+// Oversubscription calculator (ADR-0007: vanilla custom element, client-side
+// only, math from the shared module).
+---
+
+<oversub-calc>
+	<form>
+		<label>AP usable capacity (Mbps)
+			<input name="capacity" type="number" value="200" min="1" step="10" />
+		</label>
+		<label>Fastest plan sold on this AP (Mbps)
+			<input name="plan" type="number" value="25" min="1" step="5" />
+		</label>
+		<label>Subscribers on this AP
+			<input name="subs" type="number" value="40" min="0" step="1" />
+		</label>
+	</form>
+	<div class="results" role="status" aria-live="polite"></div>
+</oversub-calc>
+
+<script>
+	import { oversubscriptionRatio, maxSubscribers } from '../../lib/biz-math.js';
+
+	class OversubCalc extends HTMLElement {
+		form: HTMLFormElement | null = null;
+		out: HTMLElement | null = null;
+
+		connectedCallback() {
+			this.form = this.querySelector('form');
+			this.out = this.querySelector('.results');
+			this.form?.addEventListener('input', () => this.render());
+			this.render();
+		}
+
+		num(name: string): number {
+			const el = this.form?.elements.namedItem(name) as HTMLInputElement | null;
+			return Number(el?.value) || 0;
+		}
+
+		render() {
+			if (!this.out) return;
+			const capacity = this.num('capacity');
+			const plan = this.num('plan');
+			const subs = this.num('subs');
+			const ratio = oversubscriptionRatio(subs, plan, capacity);
+			const at5 = maxSubscribers(capacity, plan, 5);
+			if (ratio === null || at5 === null) {
+				this.out.innerHTML = '<p class="bad">Enter a capacity and plan speed.</p>';
+				return;
+			}
+			const verdict =
+				ratio <= 5
+					? '<p class="good">At or under the healthy 5:1 target.</p>'
+					: ratio <= 8
+						? '<p class="ok">Between 5:1 and 8:1 — watch the peak hour; evenings are when customers judge you.</p>'
+						: '<p class="bad">Past 8:1 — peak-hour experience is paying for these subscribers. Split the sector before the reviews say "slow at night."</p>';
+			this.out.innerHTML = `
+				<p>This AP is running at <strong>${ratio.toFixed(1)} : 1</strong></p>
+				<p>Subscribers it supports at the 5:1 target: <strong>${at5}</strong>
+					on a ${plan} Mbps plan</p>
+				${verdict}`;
+		}
+	}
+
+	customElements.define('oversub-calc', OversubCalc);
+</script>
+
+<style>
+	oversub-calc {
+		display: block;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 1rem;
+		margin: 1.5rem 0;
+	}
+	oversub-calc form {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+	}
+	oversub-calc label {
+		display: block;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-2);
+	}
+	oversub-calc input {
+		display: block;
+		width: 100%;
+		margin-top: 0.2rem;
+		padding: 0.35rem 0.5rem;
+		border: 1px solid var(--sl-color-gray-4);
+		border-radius: 0.35rem;
+		background: var(--sl-color-bg);
+		color: var(--sl-color-white);
+		font-size: var(--sl-text-sm);
+	}
+	oversub-calc .results {
+		margin-top: 1rem;
+		padding-top: 0.75rem;
+		border-top: 1px dashed var(--sl-color-gray-5);
+	}
+	oversub-calc .results p {
+		margin: 0.3rem 0;
+		font-size: var(--sl-text-sm);
+	}
+	oversub-calc .good { color: var(--sl-color-green-high); }
+	oversub-calc .ok { color: var(--sl-color-blue-high); }
+	oversub-calc .bad { color: var(--sl-color-orange-high); }
+</style>

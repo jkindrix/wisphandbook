@@ -35,3 +35,27 @@ export function paybackMonths(connectCost, margin) {
 	if (margin <= 0) return null;
 	return connectCost / margin;
 }
+
+/**
+ * Oversubscription ratio: total sold capacity vs what the AP actually delivers.
+ * @param {number} subscribers
+ * @param {number} planMbps - fastest/typical plan sold on this AP
+ * @param {number} capacityMbps - AP's real usable capacity
+ * @returns {number | null} ratio (e.g. 5 means 5:1), null if capacity <= 0
+ */
+export function oversubscriptionRatio(subscribers, planMbps, capacityMbps) {
+	if (capacityMbps <= 0) return null;
+	return (subscribers * planMbps) / capacityMbps;
+}
+
+/**
+ * Subscribers an AP supports at a chosen oversubscription ratio.
+ * @param {number} capacityMbps
+ * @param {number} planMbps
+ * @param {number} ratio - e.g. 5 for 5:1
+ * @returns {number | null} whole subscribers, null if plan <= 0
+ */
+export function maxSubscribers(capacityMbps, planMbps, ratio) {
+	if (planMbps <= 0) return null;
+	return Math.floor((capacityMbps * ratio) / planMbps);
+}

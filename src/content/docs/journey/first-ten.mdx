@@ -11,6 +11,8 @@ jurisdiction: universal
 equipmentCited: true
 ---
 
+import OversubscriptionCalculator from '../../../components/calculators/OversubscriptionCalculator.astro';
+
 Customer one proved the machine works. Customers two through ten prove
 something harder: that *you* can become a process instead of a hero. Every
 problem in this stage has the same root — things that were fine as one-off
@@ -125,7 +127,9 @@ capacity across subscribers, on the (correct) bet that they don't all peak
 simultaneously. Concretely: a current mid-class sector delivering ~200 Mbps
 of usable capacity supports roughly **40 subscribers on a 25 Mbps plan at
 5:1** — fewer on faster plans, and pushing toward 8:1 buys subscriber count
-at the price of peak-hour experience.
+at the price of peak-hour experience. Run your own AP's numbers:
+
+<OversubscriptionCalculator />
 
 The operational rules:
 

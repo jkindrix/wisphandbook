@@ -26,3 +26,12 @@ test('payback months matches Stage 0 under-a-year claim at defaults', () => {
 	assert.ok(months > 7 && months < 9);
 	assert.equal(paybackMonths(500, 0), null);
 });
+
+test('oversubscription matches the Stage 2 anchor: 200 Mbps AP, 25 Mbps plan, 5:1 → 40 subs', async () => {
+	const { oversubscriptionRatio, maxSubscribers } = await import('./biz-math.js');
+	const assert = (await import('node:assert/strict')).default;
+	assert.equal(maxSubscribers(200, 25, 5), 40);
+	assert.equal(oversubscriptionRatio(40, 25, 200), 5);
+	assert.equal(oversubscriptionRatio(10, 25, 0), null);
+	assert.equal(maxSubscribers(200, 0, 5), null);
+});
