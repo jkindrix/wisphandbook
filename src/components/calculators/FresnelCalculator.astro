@@ -1,0 +1,101 @@
+---
+// Fresnel zone clearance calculator (ADR-0007: vanilla custom element,
+// client-side only, math from the shared rf-math module).
+---
+
+<fresnel-calc>
+	<form>
+		<label>Path length (miles)
+			<input name="miles" type="number" value="1" min="0.1" step="0.1" />
+		</label>
+		<label>Frequency (GHz)
+			<input name="ghz" type="number" value="5.8" min="0.4" step="0.1" />
+		</label>
+	</form>
+	<div class="results" role="status" aria-live="polite"></div>
+</fresnel-calc>
+
+<script>
+	import { fresnelMidpointRadiusM, MILES_TO_KM, METERS_TO_FEET } from '../../lib/rf-math.js';
+
+	class FresnelCalc extends HTMLElement {
+		form: HTMLFormElement | null = null;
+		out: HTMLElement | null = null;
+
+		connectedCallback() {
+			this.form = this.querySelector('form');
+			this.out = this.querySelector('.results');
+			this.form?.addEventListener('input', () => this.render());
+			this.render();
+		}
+
+		num(name: string): number {
+			const el = this.form?.elements.namedItem(name) as HTMLInputElement | null;
+			return Number(el?.value) || 0;
+		}
+
+		render() {
+			if (!this.out) return;
+			const miles = this.num('miles');
+			const ghz = this.num('ghz');
+			if (miles <= 0 || ghz <= 0) {
+				this.out.innerHTML = '<p class="bad">Enter a path length and frequency.</p>';
+				return;
+			}
+			const radiusM = fresnelMidpointRadiusM(miles * MILES_TO_KM, ghz);
+			const radiusFt = radiusM * METERS_TO_FEET;
+			const clearFt = radiusFt * 0.6;
+			this.out.innerHTML = `
+				<p>First Fresnel zone radius at mid-path:
+					<strong>${radiusFt.toFixed(1)} ft</strong> (${radiusM.toFixed(1)} m)</p>
+				<p>Minimum clearance to keep (60% rule):
+					<strong>${clearFt.toFixed(1)} ft</strong> above every obstacle at
+					mid-path — trees at their <em>summer</em> height, not their winter one.</p>`;
+		}
+	}
+
+	customElements.define('fresnel-calc', FresnelCalc);
+</script>
+
+<style>
+	fresnel-calc {
+		display: block;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 1rem;
+		margin: 1.5rem 0;
+	}
+	fresnel-calc form {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+	}
+	fresnel-calc label {
+		display: block;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-2);
+	}
+	fresnel-calc input {
+		display: block;
+		width: 100%;
+		margin-top: 0.2rem;
+		padding: 0.35rem 0.5rem;
+		border: 1px solid var(--sl-color-gray-4);
+		border-radius: 0.35rem;
+		background: var(--sl-color-bg);
+		color: var(--sl-color-white);
+		font-size: var(--sl-text-sm);
+	}
+	fresnel-calc .results {
+		margin-top: 1rem;
+		padding-top: 0.75rem;
+		border-top: 1px dashed var(--sl-color-gray-5);
+	}
+	fresnel-calc .results p {
+		margin: 0.3rem 0;
+		font-size: var(--sl-text-sm);
+	}
+	fresnel-calc .bad {
+		color: var(--sl-color-orange-high);
+	}
+</style>

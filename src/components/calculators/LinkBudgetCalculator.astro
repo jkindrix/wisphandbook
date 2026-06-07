@@ -1,0 +1,159 @@
+---
+// Link budget calculator (ADR-0007: vanilla custom element, client-side only,
+// math from the shared rf-math module).
+---
+
+<link-budget-calc>
+	<form>
+		<fieldset>
+			<legend>Path</legend>
+			<label>Distance (miles)
+				<input name="miles" type="number" value="1" min="0.1" step="0.1" />
+			</label>
+			<label>Frequency (GHz)
+				<input name="ghz" type="number" value="5.8" min="0.4" step="0.1" />
+			</label>
+		</fieldset>
+		<fieldset>
+			<legend>Radios</legend>
+			<label>TX power (dBm)
+				<input name="tx" type="number" value="25" step="1" />
+			</label>
+			<label>AP antenna gain (dBi)
+				<input name="txgain" type="number" value="16" step="1" />
+			</label>
+			<label>CPE antenna gain (dBi)
+				<input name="rxgain" type="number" value="23" step="1" />
+			</label>
+			<label>Misc losses (dB)
+				<input name="loss" type="number" value="2" min="0" step="1" />
+			</label>
+		</fieldset>
+		<fieldset>
+			<legend>Target</legend>
+			<label>Signal needed for your tier (dBm)
+				<input name="required" type="number" value="-65" step="1" />
+			</label>
+		</fieldset>
+	</form>
+	<div class="results" role="status" aria-live="polite"></div>
+	<p class="note">Power + antenna gain is bounded by your band's EIRP rules —
+		check the <a href="/reference/spectrum-us/">spectrum reference</a> before
+		transmitting at these numbers.</p>
+</link-budget-calc>
+
+<script>
+	import { fsplDb, rxSignalDbm, linkMarginDb, MILES_TO_KM } from '../../lib/rf-math.js';
+
+	class LinkBudgetCalc extends HTMLElement {
+		form: HTMLFormElement | null = null;
+		out: HTMLElement | null = null;
+
+		connectedCallback() {
+			this.form = this.querySelector('form');
+			this.out = this.querySelector('.results');
+			this.form?.addEventListener('input', () => this.render());
+			this.render();
+		}
+
+		num(name: string): number {
+			const el = this.form?.elements.namedItem(name) as HTMLInputElement | null;
+			return Number(el?.value) || 0;
+		}
+
+		render() {
+			if (!this.out) return;
+			const miles = this.num('miles');
+			const ghz = this.num('ghz');
+			if (miles <= 0 || ghz <= 0) {
+				this.out.innerHTML = '<p class="bad">Enter a distance and frequency.</p>';
+				return;
+			}
+			const fspl = fsplDb(miles * MILES_TO_KM, ghz);
+			const rx = rxSignalDbm(this.num('tx'), this.num('txgain'), this.num('rxgain'), fspl, this.num('loss'));
+			const margin = linkMarginDb(rx, this.num('required'));
+			const verdict =
+				margin >= 20
+					? '<p class="good">Comfortable — survives rain, foliage growth, and a bad day.</p>'
+					: margin >= 10
+						? '<p class="ok">Workable — but this is your fade margin, and weather will spend some of it.</p>'
+						: margin >= 0
+							? '<p class="bad">Marginal — fine on a clear day, a support call in the first storm. Stage 2’s rule: refuse marginal installs.</p>'
+							: '<p class="bad">Below requirement — this link does not deliver your tier. More gain, less distance, or a different site.</p>';
+			this.out.innerHTML = `
+				<p>Free-space path loss: <strong>${fspl.toFixed(1)} dB</strong></p>
+				<p>Predicted receive signal: <strong>${rx.toFixed(1)} dBm</strong></p>
+				<p>Margin above your tier's requirement: <strong>${margin.toFixed(1)} dB</strong></p>
+				${verdict}`;
+		}
+	}
+
+	customElements.define('link-budget-calc', LinkBudgetCalc);
+</script>
+
+<style>
+	link-budget-calc {
+		display: block;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 1rem;
+		margin: 1.5rem 0;
+	}
+	link-budget-calc form {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+	}
+	link-budget-calc fieldset {
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 0.75rem;
+		margin: 0;
+	}
+	link-budget-calc legend {
+		font-size: var(--sl-text-sm);
+		font-weight: 600;
+		padding: 0 0.35rem;
+	}
+	link-budget-calc label {
+		display: block;
+		font-size: var(--sl-text-xs);
+		margin-bottom: 0.6rem;
+		color: var(--sl-color-gray-2);
+	}
+	link-budget-calc input {
+		display: block;
+		width: 100%;
+		margin-top: 0.2rem;
+		padding: 0.35rem 0.5rem;
+		border: 1px solid var(--sl-color-gray-4);
+		border-radius: 0.35rem;
+		background: var(--sl-color-bg);
+		color: var(--sl-color-white);
+		font-size: var(--sl-text-sm);
+	}
+	link-budget-calc .results {
+		margin-top: 1rem;
+		padding-top: 0.75rem;
+		border-top: 1px dashed var(--sl-color-gray-5);
+	}
+	link-budget-calc .results p,
+	link-budget-calc .note {
+		margin: 0.3rem 0;
+		font-size: var(--sl-text-sm);
+	}
+	link-budget-calc .note {
+		margin-top: 0.75rem;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+	}
+	link-budget-calc .good {
+		color: var(--sl-color-green-high);
+	}
+	link-budget-calc .ok {
+		color: var(--sl-color-blue-high);
+	}
+	link-budget-calc .bad {
+		color: var(--sl-color-orange-high);
+	}
+</style>

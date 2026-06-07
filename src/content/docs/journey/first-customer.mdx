@@ -11,6 +11,9 @@ jurisdiction: universal
 equipmentCited: true
 ---
 
+import FresnelCalculator from '../../../components/calculators/FresnelCalculator.astro';
+import LinkBudgetCalculator from '../../../components/calculators/LinkBudgetCalculator.astro';
+
 Stage 0 ended with a decision: this area can work. Stage 1 ends with a
 stranger paying you money for internet that arrives over your radios. Between
 those two points: a small amount of physics, one negotiated rooftop, two
@@ -43,7 +46,17 @@ You don't need an engineering degree. You need four ideas, deeply:
 
 Learn these by *planning*: pick three real houses near a candidate site and
 build the link budget and path profile for each before spending a dollar.
-The exercise costs an evening and teaches more than a month of forum reading.
+The exercise costs an evening and teaches more than a month of forum reading —
+and you can do the arithmetic right here.
+
+**How fat is the line of sight?** (idea #1, made concrete):
+
+<FresnelCalculator />
+
+**Does the link budget close?** (idea #2 — defaults are a typical 5 GHz
+sector-to-dish residential link):
+
+<LinkBudgetCalculator />
 
 ## Choosing your first spectrum
 
