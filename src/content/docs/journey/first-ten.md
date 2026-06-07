@@ -80,6 +80,39 @@ And the install discipline pays off here: the tech who documented signal
 numbers and photos at install time troubleshoots in minutes; the one who
 didn't, drives.
 
+## The referral machine
+
+Stage 1 found customers by physics; Stage 2 grows by reputation. Word of
+mouth isn't a thing that happens to you — it's a system you build, and at
+this scale it outperforms any paid channel:
+
+- **Every install is a marketing event.** The truck (or your visibly busy
+  ladder) on a street is the ad;
+  [operators report](https://preseem.com/2019/05/wisp-marketing-tips/)
+  door-hanging the rest of the street while there converts the curiosity
+  you've already generated. A yard sign at the new customer's place — asked
+  for, never assumed — keeps working after you leave.
+- **Make referrals formal and two-sided.** The
+  [classic mechanic](https://startyourownisp.com/posts/marketing/) is a free
+  month per referred customer; broadband programs more broadly run **$20–100
+  bill credits, rewarding both sides**. Configure it in your billing
+  platform so it's one click, not a favor someone has to remember.
+- **Be part of the local fabric.** Industry experience is blunt about this:
+  community presence — the school sponsorship, the county fair booth, the
+  owner who answers the phone — [outperforms promotional pricing](https://maccnet.com/how-small-isps-can-compete-on-customer-experience-and-win/)
+  and lowers churn at the same time. The practitioner rule of thumb: keep
+  answering the phone yourself up to your first ~100 customers; every call
+  is market research you can't buy.
+- **Commercial accounts respond to outreach, not ads.** A first business,
+  church, or municipal customer usually comes from a conversation at a local
+  business event — worth knowing now, because commercial revenue becomes a
+  major lever in [Stage 4](/journey/operating/).
+
+The quiet engine under all of it is the support quality from the previous
+section: "they fixed it before I noticed" is the sentence that gets repeated
+at kitchen tables — and kitchen tables are where rural internet decisions are
+made.
+
 ## Capacity: when one AP isn't enough
 
 The question every growing operator asks — "how many customers fit on one

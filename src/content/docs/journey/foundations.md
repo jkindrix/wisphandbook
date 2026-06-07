@@ -131,7 +131,9 @@ researchable from your desk before you spend anything:
 - **Existing service quality.** Drive it. Talk to people. What do they
   actually have, what do they pay, and what do they complain about?
   Public coverage maps overstate reality; complaints in local Facebook groups
-  understate nothing.
+  understate nothing. And start an **interest list** now — names you collect
+  while researching are both demand evidence for this stage's math and your
+  install queue for [Stage 1](/journey/first-customer/).
 - **High places and fiber.** Are there usable elevated sites (existing towers,
   silos, water tanks, buildings) in the right spots — and can you get fiber
   or a clean backhaul path to at least one of them?

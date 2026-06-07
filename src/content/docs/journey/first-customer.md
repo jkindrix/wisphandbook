@@ -122,6 +122,36 @@ single vendor ecosystem for access radios keeps your spare parts, your
 management software, and your learning curve unified. Mixing platforms at
 three customers is how networks become unmaintainable at three hundred.
 
+## Where the first customer comes from
+
+The part most technical guides skip entirely: a working sector with nobody
+aimed at it is a hobby. The good news — at this stage, customer acquisition
+is not "marketing," it's a short list of unglamorous moves that
+[operators consistently report working](https://preseem.com/2019/05/wisp-marketing-tips/):
+
+- **Sell before you finish building.** Flyer the homes your path profiles
+  already cleared — *only* those homes — with a simple "high-speed internet
+  is coming to [area], reserve your spot" message and a way to sign up.
+  The interest list you started in [Stage 0](/journey/foundations/) is both
+  proof your take-rate math was honest and your install queue for week one.
+  Some operators go further and make a neighborhood's build conditional on a
+  signup threshold — presale as feasibility test.
+- **Your first customers are already chosen.** The site landlord (the barter
+  deal), the three houses you link-budgeted while learning RF, and the
+  neighbors who can see your high site. Start there; they were picked by
+  physics.
+- **Be visible where complaints live.** Stage 0 told you to read the local
+  Facebook groups for incumbent complaints — now answer them, as the local
+  option with a face. Hyper-local posts and word of mouth beat any ad money
+  you could spend at this scale.
+- **Never market past your coverage.** A flyer on a house you can't serve
+  creates a disappointed lead who tells the neighbors. The
+  [practitioner rule](https://startyourownisp.com/posts/marketing/): only the
+  doors you're confident you can reach.
+- **Price simply.** Flat rate, no teaser-rate games, taxes folded in so the
+  bill is a nice even number every month. You're the honest local
+  alternative; the bill should look like it.
+
 ## CPE and the first install
 
 The install is where your reputation is built or destroyed — it's the only
