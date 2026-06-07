@@ -10,6 +10,8 @@ jurisdiction: universal
 equipmentCited: true
 ---
 
+import BreakEvenCalculator from '../../../components/calculators/BreakEvenCalculator.astro';
+
 Before you buy a single radio, you owe yourself an honest answer to one
 question: **does a WISP make sense here, now, for you?** This stage exists to
 help you answer it — including the cases where the answer is no.
@@ -64,7 +66,11 @@ every number against your own market before trusting it:
   somewhere between 15 and 50 customers to break even on a lean single-site
   start. Experienced operators use a blunter planning floor: **a site that
   can't realistically reach ~50 customers isn't worth building.** That
-  spreadsheet is the single most important document you will ever create.
+  spreadsheet is the single most important document you will ever create —
+  and here's a starting version of it. Defaults are this page's mid-2026
+  ballparks; replace every one with your market's reality:
+
+<BreakEvenCalculator />
 
 When this works: clustered demand (a town, a lake community, a valley of
 farms) that existing providers serve badly or not at all, with a defensible

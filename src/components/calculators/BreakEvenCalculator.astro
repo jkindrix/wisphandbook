@@ -1,0 +1,144 @@
+---
+// Break-even calculator (ADR-0007: vanilla custom element, client-side only,
+// math imported from the shared module — never reimplemented inline).
+---
+
+<break-even-calc>
+	<form>
+		<fieldset>
+			<legend>Revenue</legend>
+			<label>Monthly price per customer ($)
+				<input name="arpu" type="number" value="75" min="0" step="5" />
+			</label>
+			<label>Variable cost per customer ($/mo)
+				<input name="variable" type="number" value="12" min="0" step="1" />
+			</label>
+		</fieldset>
+		<fieldset>
+			<legend>Fixed monthly costs</legend>
+			<label>Upstream bandwidth ($/mo)
+				<input name="upstream" type="number" value="800" min="0" step="50" />
+			</label>
+			<label>Site lease ($/mo)
+				<input name="lease" type="number" value="150" min="0" step="25" />
+			</label>
+			<label>Insurance, software, other ($/mo)
+				<input name="other" type="number" value="250" min="0" step="25" />
+			</label>
+		</fieldset>
+		<fieldset>
+			<legend>Per-customer build-out</legend>
+			<label>One-time connect cost ($)
+				<input name="connect" type="number" value="500" min="0" step="50" />
+			</label>
+		</fieldset>
+	</form>
+	<div class="results" role="status" aria-live="polite"></div>
+</break-even-calc>
+
+<script>
+	import { contributionMargin, breakEvenCount, paybackMonths } from '../../lib/biz-math.js';
+
+	class BreakEvenCalc extends HTMLElement {
+		connectedCallback() {
+			this.form = this.querySelector('form');
+			this.out = this.querySelector('.results');
+			this.form?.addEventListener('input', () => this.render());
+			this.render();
+		}
+
+		num(name: string): number {
+			const el = this.form?.elements.namedItem(name) as HTMLInputElement | null;
+			return Number(el?.value) || 0;
+		}
+
+		render() {
+			if (!this.out) return;
+			const margin = contributionMargin(this.num('arpu'), this.num('variable'));
+			const fixed = this.num('upstream') + this.num('lease') + this.num('other');
+			const breakEven = breakEvenCount(fixed, margin);
+			const payback = paybackMonths(this.num('connect'), margin);
+
+			if (breakEven === null) {
+				this.out.innerHTML = `<p class="bad">Revenue per customer must exceed
+					per-customer costs — at these numbers, no customer count ever breaks even.</p>`;
+				return;
+			}
+			const floorNote =
+				breakEven > 50
+					? `<p class="bad">That's <strong>above the ~50-customers-per-site planning
+						floor</strong> — revisit your costs or your pricing before building.</p>`
+					: `<p class="good">Comfortably under the ~50-customers-per-site planning
+						floor.</p>`;
+			this.out.innerHTML = `
+				<p>Contribution margin: <strong>$${margin.toFixed(0)}/customer/month</strong></p>
+				<p>Break-even: <strong>${breakEven} customers</strong>
+					(covering $${fixed.toFixed(0)}/month of fixed costs)</p>
+				<p>Each customer repays their connect cost in
+					<strong>${payback === null ? '—' : payback.toFixed(1)} months</strong></p>
+				${floorNote}`;
+		}
+		form: HTMLFormElement | null = null;
+		out: HTMLElement | null = null;
+	}
+
+	customElements.define('break-even-calc', BreakEvenCalc);
+</script>
+
+<style>
+	break-even-calc {
+		display: block;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 1rem;
+		margin: 1.5rem 0;
+	}
+	break-even-calc form {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	}
+	break-even-calc fieldset {
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		padding: 0.75rem;
+		margin: 0;
+	}
+	break-even-calc legend {
+		font-size: var(--sl-text-sm);
+		font-weight: 600;
+		padding: 0 0.35rem;
+	}
+	break-even-calc label {
+		display: block;
+		font-size: var(--sl-text-xs);
+		margin-bottom: 0.6rem;
+		color: var(--sl-color-gray-2);
+	}
+	break-even-calc input {
+		display: block;
+		width: 100%;
+		margin-top: 0.2rem;
+		padding: 0.35rem 0.5rem;
+		border: 1px solid var(--sl-color-gray-4);
+		border-radius: 0.35rem;
+		background: var(--sl-color-bg);
+		color: var(--sl-color-white);
+		font-size: var(--sl-text-sm);
+	}
+	break-even-calc .results {
+		margin-top: 1rem;
+		padding-top: 0.75rem;
+		border-top: 1px dashed var(--sl-color-gray-5);
+	}
+	break-even-calc .results p {
+		margin: 0.3rem 0;
+		font-size: var(--sl-text-sm);
+	}
+	break-even-calc .good {
+		color: var(--sl-color-green-high);
+	}
+	break-even-calc .bad {
+		color: var(--sl-color-orange-high);
+	}
+</style>
