@@ -5,7 +5,7 @@ sidebar:
   order: 1
 stage: foundations
 lastReviewed: 2026-06-07
-depth: overview
+depth: working
 jurisdiction: universal
 equipmentCited: true
 ---
@@ -111,6 +111,18 @@ everywhere**:
    Check your state broadband office's published award maps — this is
    knowable, not a gamble.
 
+**Run the checks — this is an afternoon, address by address.** Pick ten
+sample addresses spread across your target area and check each against all
+three competitors: the [Starlink availability map](https://www.starlink.com/map)
+for satellite, each carrier's home-internet address checker for FWA, and the
+[FCC National Broadband Map](https://broadbandmap.fcc.gov/) for what every
+provider *claims* at that location (remember it's self-reported — Stage 2
+explains why — so treat it as the optimistic ceiling, then ground-truth by
+asking actual residents). For the subsidy threat, your **state broadband
+office publishes its BEAD award maps** — find yours via the
+[NTIA's data hub](https://broadbandusa.ntia.gov/resources/data-and-mapping)
+and check whether funded fiber is coming to your exact footprint.
+
 This is not a reason to quit before starting. Roughly 2,000 WISPs serve
 millions of Americans, their speeds keep climbing, and a well-run local
 operator beats all three competitors on the things they're structurally bad
@@ -146,6 +158,26 @@ researchable from your desk before you spend anything:
   silos, water tanks, buildings) in the right spots — and can you get fiber
   or a clean backhaul path to at least one of them?
 
+**The desk method, concretely.** All four checks run from a laptop before you
+spend a dollar:
+
+1. **Count rooftops** in Google Earth: drop a pin on each candidate high
+   site, draw a 3–5 mile ring, and actually count structures — tedious for
+   an hour, and it replaces a guess with a number you'll bet money on.
+2. **Test the paths** with a free professional planner:
+   [Cambium LINKPlanner](https://www.cambiumnetworks.com/products/software/linkplanner/)
+   (desktop, pulls real elevation profiles automatically) or Ubiquiti's
+   [UISP Design Center](https://ispdesign.ui.com/) (browser). Place your
+   candidate site, place a dozen sample rooftops, and let the terrain tell
+   you which neighborhoods are reachable — this is the same Fresnel/link
+   math as [the Stage 1 calculators](/tools/), run against real ground.
+3. **Read foliage at customer height**, not from above: Street View along
+   the roads, looking back toward the high site. A canopy that looks thin
+   in satellite view is a wall at rooftop height.
+4. **Then drive it** — the desk pass tells you where to look; the drive
+   tells you the truth. Note the high structures the satellite missed; every
+   small town has a silo, tank, or steeple that doesn't show well from above.
+
 ## Finding upstream
 
 Your whole network hangs off one purchased connection, so this is a
@@ -163,6 +195,25 @@ does it cost?**
 - The distance between "where fiber is cheap" and "where your customers are"
   is what your backhaul links must bridge. Every mile of that gap adds cost
   and failure modes.
+
+**How to actually find the fiber:**
+
+- **Your state broadband map** (via the
+  [NTIA data hub](https://broadbandusa.ntia.gov/resources/data-and-mapping))
+  and the FCC map show who claims fiber service near your area — every
+  claimed business-fiber address implies glass in the ground nearby.
+- **Ask the institutions**: the school district, library, hospital, and
+  county offices almost certainly have fiber (in the US, E-Rate has funded
+  school connectivity for decades) — and someone there knows which provider
+  delivered it. That provider sells DIA.
+- **Call the electric co-op.** Rural electric cooperatives increasingly run
+  fiber along their own poles and sell wholesale transport — and they
+  already know every structure in the county.
+- **Get a real quote, not an assumption**: ask for *dedicated internet
+  access* with an Ethernet handoff, at your candidate site's address —
+  monthly cost, install cost, and construction cost if the fiber needs to be
+  extended. Quote marketplaces can parallelize this across providers, but a
+  direct call to the two or three regional fiber operators works fine.
 
 If you cannot find a viable upstream within backhaul reach of your target
 area, you do not have a WISP — full stop. Settle this before anything else.
@@ -212,10 +263,33 @@ None of these makes you wrong to want this. They make *this area, this plan,
 or this moment* wrong. Plenty of working WISPs exist because their founder's
 first answer was "not here" — and their second answer was better.
 
+## The Stage 0 exit checklist
+
+"My area passes" is a feeling; these are artifacts. You're ready for Stage 1
+when every one of them exists:
+
+- [ ] **A rooftop count** — ~500+ structures within 3–5 miles of at least one
+  candidate site, counted, not estimated
+- [ ] **A candidate-site shortlist** with desk-checked paths to sample
+  rooftops (the planner screenshots are your record)
+- [ ] **A real DIA quote** at or near a candidate site — actual monthly,
+  install, and construction numbers
+- [ ] **A break-even number** from the calculator above, fed with *your*
+  quote and lease numbers — comfortably under the ~50-per-site floor
+- [ ] **The ten-address competitor check** done, and a one-sentence answer to
+  "why would someone leave Starlink or carrier FWA for me?"
+- [ ] **The BEAD award map checked** against your exact footprint
+- [ ] **An interest list started**, with more names than your break-even
+  number would eventually need at a 10% take rate
+- [ ] **A survivable runway**: startup budget + 6 months of fixed costs you
+  can lose without losing your house
+
+Any box you can't check is Stage 0 homework, not a Stage 1 problem to defer.
+
 ## Where this goes next
 
-If your area passes — clustered demand, usable high sites, reachable fiber,
-a real advantage over the big three competitors, and survivable runway —
-you're ready for [Stage 1: First Customer](/journey/first-customer/): the
-RF fundamentals you can't skip, your first site, your first link, and the
-moment someone actually pays you.
+With the checklist done — clustered demand, usable high sites, a fiber quote
+in hand, a real advantage over the big three, and survivable runway — you're
+ready for [Stage 1: First Customer](/journey/first-customer/): the RF
+fundamentals you can't skip, your first site, your first link, and the moment
+someone actually pays you.
