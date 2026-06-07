@@ -38,6 +38,16 @@ Terms you'll meet throughout the handbook. US-specific terms are marked.
 
 **Fade margin** — Headroom built into a link budget above the minimum required signal, so rain, foliage, and interference don't take the link down.
 
+**Rain fade** — Signal loss when heavy precipitation absorbs and scatters a radio path, hitting high-frequency links (especially 60 GHz) hardest. A link that dies in every storm was engineered without enough fade margin.
+
+**GPS sync** — Timing all the APs on a site (or network) from GPS so they transmit and receive in unison instead of deafening each other. Standard practice on multi-sector towers in some platform ecosystems.
+
+**PoE (Power over Ethernet)** — Powering a radio through its data cable via an injector or switch. Failing injectors and corroded connectors are among the most common hardware failures in fixed wireless.
+
+**Drip loop** — A downward sag left in an outdoor cable so water runs off the bottom of the loop instead of following the cable into the connector or the building. Costs nothing at install; prevents the classic mid-storm failure.
+
+**Part 101** *(US)* — The FCC's licensed point-to-point microwave service (11 GHz and up). An exclusive, interference-protected channel per link — what critical backhaul graduates to when an outage costs more than the licensing.
+
 **dBm / dBi / dB** — Decibel units: absolute power referenced to 1 mW (dBm), antenna gain referenced to an isotropic radiator (dBi), and relative ratios (dB). RF math is done in decibels.
 
 **EIRP** — Effective isotropic radiated power: transmit power plus antenna gain minus cable loss. What regulators actually limit (US: FCC rules per band).
@@ -66,6 +76,14 @@ Terms you'll meet throughout the handbook. US-specific terms are marked.
 
 **CGNAT** — Carrier-grade NAT: sharing a small pool of public IPv4 addresses across many subscribers. Common at small WISPs because IPv4 is scarce and expensive.
 
+**DIA (Dedicated Internet Access)** — An internet connection with committed capacity, an SLA, and no "no resale" clause — what a WISP buys as upstream, as opposed to a residential line.
+
+**Multihoming** — Buying upstream from two or more providers and announcing your address space to both via BGP, so no single provider's failure takes you offline.
+
+**BCP38** — The anti-spoofing discipline: your network edge drops packets whose source addresses couldn't legitimately come from there. Keeps your customers' infected devices from attacking the internet with your name on the traffic.
+
+**Blast radius** — How much of the network an outage affects: one customer, one sector, one site, or everything. The first diagnostic question, because the scope names the broken layer.
+
 **QoE / oversubscription** — You sell more aggregate capacity than you own upstream, because subscribers don't all peak simultaneously. Choosing the ratio is a core engineering-economics decision.
 
 ## Business
@@ -77,6 +95,12 @@ Terms you'll meet throughout the handbook. US-specific terms are marked.
 **CapEx / OpEx** — Capital expenditure (towers, radios, install gear) vs. operating expenditure (backhaul, rent, insurance, payroll). WISPs are CapEx-front-loaded businesses.
 
 **Churn** — The rate at which customers leave. Growth is meaningless if churn eats it.
+
+**Contribution margin** — What each customer's monthly payment leaves after their variable costs — the number that pays down fixed costs and connect costs. Revenue minus per-customer cost; the heart of the break-even arithmetic.
+
+**BEAD** *(US)* — The $42 billion federal Broadband Equity, Access, and Deployment program funding (mostly fiber) buildouts to unserved areas. Its state-published award maps tell you whether a subsidized competitor is coming to your footprint.
+
+**E-Rate** *(US)* — The federal program that has funded school and library connectivity for decades — which is why the school district almost always has fiber, and why it's a reliable clue for finding glass near your target area.
 
 **Truck roll** — Any service event requiring a technician on site. The most expensive routine thing a WISP does; much of network design is about avoiding them.
 
