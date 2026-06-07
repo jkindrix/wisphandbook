@@ -3,7 +3,7 @@ title: Glossary
 description: The vocabulary of the WISP world — RF, networking, and business terms used throughout the handbook.
 sidebar:
   order: 99
-lastReviewed: 2026-06-05
+lastReviewed: 2026-06-07
 depth: working
 jurisdiction: universal
 ---
