@@ -49,6 +49,8 @@ The redesign, at overview depth:
   Skipping this is invisible right up until one customer's infected device —
   or one abuse complaint with your name on it — makes it very visible.
 
+![Before and after the redesign: a flat bridged network where one cut link darkens every downstream site, versus routed per-site failure domains on a ring where OSPF reroutes around the same cut.](../../../assets/diagrams/routed-redesign.svg)
+
 If this paragraph feels early, skip it and bookmark it: the right time to
 re-architect is *before* the outage that proves the point.
 
