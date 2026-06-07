@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="ui-sans-serif, system-ui, sans-serif">
+  <!-- Hand-authored source (ADR-0008). Side view of a fixed-wireless path:
+       the visual line of sight vs the first Fresnel zone, with a tree
+       intruding into the clearance the 60% rule protects. -->
+  <rect x="0" y="0" width="760" height="320" rx="10" fill="#16202c"/>
+  <text x="24" y="34" fill="#d8e1ec" font-size="16" font-weight="600">Line of sight is fatter than it looks</text>
+
+  <!-- ground -->
+  <line x1="24" y1="276" x2="736" y2="276" stroke="#5a6b80" stroke-width="2"/>
+
+  <!-- masts -->
+  <line x1="80" y1="276" x2="80" y2="118" stroke="#8b98a9" stroke-width="4"/>
+  <rect x="70" y="104" width="20" height="14" rx="2" fill="#4c8dd8"/>
+  <text x="56" y="298" fill="#8b98a9" font-size="13">your site</text>
+
+  <line x1="680" y1="276" x2="680" y2="118" stroke="#8b98a9" stroke-width="4"/>
+  <rect x="670" y="104" width="20" height="14" rx="2" fill="#4c8dd8"/>
+  <text x="640" y="298" fill="#8b98a9" font-size="13">customer CPE</text>
+
+  <!-- first Fresnel zone ellipse -->
+  <ellipse cx="380" cy="111" rx="300" ry="62" fill="#4c8dd8" fill-opacity="0.10" stroke="#4c8dd8" stroke-width="1.5"/>
+
+  <!-- direct visual line -->
+  <line x1="90" y1="111" x2="670" y2="111" stroke="#d8e1ec" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="300" y="100" fill="#d8e1ec" font-size="13">visual line of sight</text>
+
+  <!-- radius marker at mid-path -->
+  <line x1="380" y1="111" x2="380" y2="173" stroke="#e8a33d" stroke-width="2"/>
+  <circle cx="380" cy="111" r="3" fill="#e8a33d"/>
+  <text x="392" y="152" fill="#e8a33d" font-size="13">F1 radius — widest at mid-path</text>
+  <text x="392" y="170" fill="#e8a33d" font-size="12">(≈15 ft at 1 mile, 5.8 GHz)</text>
+
+  <!-- intruding tree -->
+  <rect x="455" y="236" width="10" height="40" fill="#7a5b3a"/>
+  <polygon points="460,148 492,236 428,236" fill="#3e7a4d"/>
+  <text x="500" y="226" fill="#e8704c" font-size="13">this tree clears the visual line —</text>
+  <text x="500" y="244" fill="#e8704c" font-size="13">and still breaks the link</text>
+
+  <!-- 60% rule note -->
+  <text x="24" y="62" fill="#8b98a9" font-size="13">Keep at least 60% of the F1 radius clear of every obstacle —</text>
+  <text x="24" y="80" fill="#8b98a9" font-size="13">measured against trees at their summer height.</text>
+</svg>

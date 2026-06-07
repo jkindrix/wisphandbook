@@ -21,6 +21,8 @@ craft, your vendor's docs describe the buttons.)
 | Everyone on one site | Power first, then backhaul |
 | Everyone everywhere | Upstream, core routing, or your own change |
 
+![A network tree from upstream through core router to two sites, their APs, and customers — with nested dashed overlays showing the four blast-radius scopes: one customer, one sector, one whole site, and everyone everywhere.](../../../assets/diagrams/blast-radius.svg)
+
 Three process rules before any of it, all learned expensively by operators:
 
 1. **Check what changed.** Most outages follow a change — yours, a vendor

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" font-family="ui-sans-serif, system-ui, sans-serif">
+  <!-- Hand-authored source (ADR-0008). The whole WISP machine in one picture:
+       upstream -> backhaul -> high site -> access -> paying customers. -->
+  <rect x="0" y="0" width="760" height="280" rx="10" fill="#16202c"/>
+  <text x="24" y="34" fill="#d8e1ec" font-size="16" font-weight="600">The whole machine</text>
+
+  <!-- ground -->
+  <line x1="24" y1="232" x2="736" y2="232" stroke="#5a6b80" stroke-width="2"/>
+
+  <!-- 1: upstream / fiber POP -->
+  <rect x="40" y="150" width="120" height="82" rx="6" fill="#1f2d3d" stroke="#4c8dd8" stroke-width="1.5"/>
+  <text x="58" y="184" fill="#d8e1ec" font-size="13">fiber POP</text>
+  <text x="58" y="202" fill="#8b98a9" font-size="12">internet you buy</text>
+  <circle cx="52" cy="163" r="9" fill="#4c8dd8"/>
+  <text x="48.5" y="168" fill="#16202c" font-size="12" font-weight="700">1</text>
+
+  <!-- 2: backhaul link -->
+  <line x1="160" y1="168" x2="362" y2="120" stroke="#e8a33d" stroke-width="2" stroke-dasharray="7 5"/>
+  <circle cx="248" cy="138" r="9" fill="#e8a33d"/>
+  <text x="244.5" y="143" fill="#16202c" font-size="12" font-weight="700">2</text>
+  <text x="196" y="116" fill="#e8a33d" font-size="13">backhaul to a high place</text>
+
+  <!-- high site: tower -->
+  <polygon points="380,110 364,232 396,232" fill="none" stroke="#8b98a9" stroke-width="3"/>
+  <rect x="368" y="96" width="24" height="14" rx="2" fill="#4c8dd8"/>
+  <text x="340" y="256" fill="#8b98a9" font-size="13">tower / silo / rooftop</text>
+
+  <!-- 3: access links to three homes -->
+  <line x1="392" y1="103" x2="560" y2="170" stroke="#54b46c" stroke-width="1.6"/>
+  <line x1="392" y1="103" x2="620" y2="150" stroke="#54b46c" stroke-width="1.6"/>
+  <line x1="392" y1="103" x2="680" y2="184" stroke="#54b46c" stroke-width="1.6"/>
+  <circle cx="520" cy="128" r="9" fill="#54b46c"/>
+  <text x="516.5" y="133" fill="#16202c" font-size="12" font-weight="700">3</text>
+  <text x="538" y="118" fill="#54b46c" font-size="13">sectors → rooftop CPE</text>
+
+  <!-- homes -->
+  <g fill="#1f2d3d" stroke="#8b98a9" stroke-width="1.5">
+    <rect x="544" y="176" width="34" height="26"/>
+    <rect x="604" y="156" width="34" height="26"/>
+    <rect x="664" y="190" width="34" height="26"/>
+  </g>
+  <g fill="none" stroke="#8b98a9" stroke-width="1.5">
+    <polyline points="540,178 561,162 582,178"/>
+    <polyline points="600,158 621,142 642,158"/>
+    <polyline points="660,192 681,176 702,192"/>
+  </g>
+
+  <!-- 4: revenue -->
+  <circle cx="556" cy="250" r="9" fill="#d8e1ec"/>
+  <text x="552" y="255" fill="#16202c" font-size="12" font-weight="700">4</text>
+  <text x="572" y="255" fill="#d8e1ec" font-size="13">customers pay monthly — you keep the network alive</text>
+</svg>
