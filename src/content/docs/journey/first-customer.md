@@ -69,7 +69,9 @@ The strategic shape, in brief:
   the workhorse band at the cost of a coordination subscription.
 
 A sane 2026 starting posture for most new rural operators: subscriber access
-in 5 or 6 GHz (prefer 6 GHz where gear and AFC coverage allow), 60 GHz or
+in 5 or 6 GHz — prefer 6 GHz where gear and AFC coverage allow, but check the
+subscriber-gear price gap in the [hardware reference](/reference/hardware/)
+first; clean spectrum currently costs several times more per roof — 60 GHz or
 wired for short backhaul, and licensed/coordinated options deferred to
 [Stage 3](/journey/scaling/).
 
@@ -103,7 +105,9 @@ sector antenna to the customer). Sometimes the fiber reaches the site itself
 and your first network is one sector and one customer radio — take that gift
 when terrain offers it.
 
-What the gear costs, in mid-2026 classes rather than models: a quality sector
+What the gear costs, in mid-2026 classes rather than models (names and
+current prices live in the [hardware reference](/reference/hardware/)): a
+quality sector
 access point runs roughly **$500–1,500**; workhorse-class subscriber radios
 **$50–110**, higher-performance models to ~$160; a
 short millimeter-wave backhaul pair, a few hundred to a couple thousand
@@ -149,11 +153,10 @@ The moment money changes hands, you're an ISP. The minimum apparatus:
 - **A service agreement** — one page is fine at first: speeds are
   "up to," what's included, what happens at non-payment, who owns the radio
   on the roof.
-- **Billing that runs itself.** Free tiers exist (a major vendor's ISP
-  management platform includes free CRM/billing; other entry platforms are
-  free up to a few dozen subscribers), and paid WISP platforms run well under
-  €1/subscriber/month at small scale. Pick anything that does recurring
-  card/ACH billing automatically — chasing checks does not scale past
+- **Billing that runs itself.** Free tiers exist, and paid WISP platforms run
+  well under €1/subscriber/month at small scale — names and current pricing
+  in the [software reference](/reference/software/). Pick anything that does
+  recurring card/ACH billing automatically — chasing checks does not scale past
   customer five.
 - **A price with a reason.** You know the competition from Stage 0. Price for
   your advantage (service, latency, locality) — not a race to the bottom you
