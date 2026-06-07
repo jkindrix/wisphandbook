@@ -3,7 +3,7 @@ title: "US Spectrum for Fixed Wireless"
 description: The bands a US WISP can use today — what each is good for, and what coordination it requires.
 sidebar:
   order: 10
-lastReviewed: 2026-06-06
+lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: us-federal
 ---
@@ -36,5 +36,5 @@ Notes that matter for a new operator:
   get higher allowances than point-to-multipoint). Your equipment enforces
   most of this, but *you* are the licensee-of-record for compliance.
 - Truly licensed spectrum (e.g., 11 GHz PtP microwave links, purchased PALs)
-  exists and matters at scale — covered in
-  [Stage 3: Scaling](/journey/scaling/).
+  exists and matters at scale — when it earns its cost is a scaling-stage
+  decision, not a day-one one.

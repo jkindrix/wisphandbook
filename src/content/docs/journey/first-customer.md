@@ -5,7 +5,7 @@ sidebar:
   order: 2
 stage: first-customer
 prerequisites: [journey/foundations]
-lastReviewed: 2026-06-06
+lastReviewed: 2026-06-07
 depth: overview
 jurisdiction: universal
 equipmentCited: true
@@ -99,7 +99,8 @@ and your first network is one sector and one customer radio — take that gift
 when terrain offers it.
 
 What the gear costs, in mid-2026 classes rather than models: a quality sector
-access point runs roughly **$500–1,500**; subscriber radios **$50–160**; a
+access point runs roughly **$500–1,500**; workhorse-class subscriber radios
+**$50–110**, higher-performance models to ~$160; a
 short millimeter-wave backhaul pair, a few hundred to a couple thousand
 dollars. Major fixed-wireless vendors run **"new WISP" starter programs** —
 discounted bundles of one sector plus a dozen subscriber radios, sometimes
